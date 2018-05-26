@@ -9,4 +9,5 @@ layout: default
 
 ### May
 
-- [Progress report on May 19th](https://ecnelises.github.io/2018/05/progress-report-on-login-sessions)
+- [RubyGems GSoC Progress report on May 25th](https://ecnelises.github.io/2018/05/progress-report-on-pages)
+- [RubyGems GSoC Progress report on May 19th](https://ecnelises.github.io/2018/05/progress-report-on-login-sessions)

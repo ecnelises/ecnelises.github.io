@@ -1,9 +1,12 @@
-# Progress report on May 19th
+# RubyGems GSoC Progress report on May 19th
 This is my technical journal on my progress of adding two factor authentication to [RubyGems](https://github.com/rubygems/rubygems) tool and its respective [hosting site](https://rubygems.org), along with other stuff regarding authentication or authorization of them. This is also a [Google Summer of Code 2018](https://summerofcode.withgoogle.com) project.
 ## Login sessions
 This week I encountered issue [#1724](https￼://github.com/rubygems/rubygems.org/issues/1724), saying any push operation will make other login states reset. The problem is easy to re-produce. Pushing gem is a _POST_ request to `/api/v1/rubygems`, a `create` action, which just creates a new `Pusher` object, validate it, and save it if no problem raised. Reason should lies in authentication process defined in `ApplicationController` triggered using `before_action`. When I check logs when every push request received, I found it.
+
 User authorization work in RubyGems.org is implemented through [Clearance](https://github.com/thoughtbot/clearance), a light-weight library compared with full-featured ones like Devise. User login state is kept by an attribute stored in users table named `remember_token`. Every time when a new login attempt is successful, a new token will be generated and replace previous token in database.
+
 Of course, this is not the best practice. In an ideal user authentication system, you can check all your active logins and you can disable any of them, just like what you see in your FaceBook account... But such things can only make a quite simple site far more complicated. It provides API keys for RESTful API requests authorization.
+
 ### How gem do logins
 We’re quite familiar with how login process happens in browser. Now we should take a look at how login executed when doing `gem push` command. We can see that every `gem` command has a respective class in path `lib/rubygems/commands/` directory. Let’s take a look at `PushCommand`. Using newest master branch will complain a version non-match error, I use tag `v2.7.7` here, since code here are not changed often.
 ```ruby
@@ -82,12 +85,18 @@ The action `remember_me!` makes app updates user’s remember token. For testing
 ## OTP and QR-code
 My main work on GSoC is adding two factor authentications. From perspective of databases, what we need to add includes:
 * Seed for OTPs
+
 * Authentication level (as we mentioned, auth-only & auth-and-write)
+
 * Recovery (or backup) codes
   From perspective of users:
+
 * QR-code for me to scan in authenticator app
+
 * Recovery codes
+
 * OTP when required
+
   So two things are important: QR-code and OTP generator. We have two good gems for them: [ROTP](https://github.com/mdp/rotp) and [rQRCode](https://github.com/whomwah/rqrcode). GitLab uses devise along with a plugin to enable 2FA feature. I once read its code, found that it also relies on ROTP. Here I take a test to show how we can draw QR-code scannable for authenticator apps.
 ```ruby
 # app/controllers/profiles_controller.rb
