@@ -9,6 +9,7 @@ layout: default
 
 ### June
 
+- [RubyGems GSoC Progress report on Jun 19th](https://ecnelises.github.io/2018/06/progress-report-on-testing-and-improvement)
 - [RubyGems GSoC Progress report on Jun 8th](https://ecnelises.github.io/2018/06/progress-report-on-whole-ui-2fa)
 - [RubyGems GSoC Progress report on Jun 3rd](https://ecnelises.github.io/2018/06/progress-report-on-2fa-settings)
 
