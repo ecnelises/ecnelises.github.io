@@ -7,6 +7,10 @@ layout: default
 
 ## 2018
 
+### July
+
+- [RubyGems GSoC Summary for MFA UI part](https://ecnelises.github.io/2018/07/ui-part-mfa-summary)
+
 ### June
 
 - [RubyGems GSoC Progress report on Jun 19th](https://ecnelises.github.io/2018/06/progress-report-on-testing-and-improvement)
