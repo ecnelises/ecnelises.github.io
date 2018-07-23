@@ -9,6 +9,7 @@ layout: default
 
 ### July
 
+- [RubyGems GSoC Progress report on Jul 22nd](https://ecnelises.github.io/2018/07/report-on-api-expiry-and-client)
 - [RubyGems GSoC Summary for MFA UI part](https://ecnelises.github.io/2018/07/ui-part-mfa-summary)
 
 ### June
